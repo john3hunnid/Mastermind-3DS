@@ -6,7 +6,7 @@ int main(){
     int rounds=0;
     printf("Welcome to mastermind\n");
     // creating the list of options to grab from later
-    char options[] = {'A', 'B', 'X', 'Y', 'L', 'R'};
+    char options[] = {'X', 'B', 'A', 'Y', 'L', 'R'};
     //initializing the generated random list for opponent
     char sequence[4];
     for(int i=0; i<4; i++){
@@ -18,8 +18,8 @@ int main(){
     }
     //running the game
     while(rounds<10){
+        //getting a guess and insuring it is a proper guess
         char playerGuess[5];
-        char printStatement[4];
         printf("Enter your 4-button sequence out of: X, B, A, Y, L, R");
         scanf("%s", playerGuess);
         while(isValidGuess(playerGuess)!=0){
@@ -28,6 +28,8 @@ int main(){
             int c;
             while ((c=getchar())!='\n'&& c!=EOF);
         }
+        //constructing a print statement to return to player
+        char printStatement[4];
         rounds++;
     }
 
