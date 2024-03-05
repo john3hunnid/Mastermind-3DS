@@ -40,8 +40,10 @@ int main(){
                 printStatement[i]=="O";
             }
         }
+        printf("Analysis of your guess: %s \n",printStatement);
         rounds++;
     }
+    return 0;
 
 }
 int isValidGuess(const char* guess){
