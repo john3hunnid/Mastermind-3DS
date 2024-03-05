@@ -106,6 +106,7 @@ int main()
         int c;
         while ((c=getchar())!='\n'&& c!=EOF);
     }
+    consoleClear();
     //made a proper guess, numGuesses is updated and top screen is updated
     numGuesses++;
     consoleInit(GFX_TOP, NULL);
