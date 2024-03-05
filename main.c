@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 //function prototypes:
+
 int isValidGuess(char* guess);
 int isInArray(char array[], int size, char value);
 char getInput();
