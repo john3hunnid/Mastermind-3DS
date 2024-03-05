@@ -16,7 +16,9 @@ void main(){
         sequence[i]=options[randomIndex];
     }
     while(rounds<10){
-        
+        printf("Enter your 4-button sequence out of: X, B, A, Y, L, R");
+        char playerGuess[];
+        scanf("%s, playerGuess")
         
         rounds++;
     }
