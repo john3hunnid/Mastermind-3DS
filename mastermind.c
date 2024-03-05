@@ -29,7 +29,7 @@ int game(){
             while ((c=getchar())!='\n'&& c!=EOF);
         }
         //constructing a print statement to return to player
-        char printStatement[4];
+        char printStatement[]={'_','_','_','_'};
         printf("X: correct guess \n");
         printf("O: correct guess wrong spot \n");
         printf("_: incorrect guess \n")
