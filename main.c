@@ -27,7 +27,7 @@ int main()
 
   //initializing the screen
   gfxInitDefault();
-  consoleInit(GFX_TOP, NULL);
+
   //start of game(out of loop)
 
     int rounds=0;
@@ -71,18 +71,31 @@ int main()
 
     /** Your code starts here **/
 
+    //to update num of guesses without updating rounds prematurely
+    int numGuesses=rounds;
 
-    //printing to first line
-    printf("\x1b[0;0H[Current guesses: %d]",rounds);
+    //printing to first 6 lines on the top screen (these remain constant)
+    consoleInit(GFX_TOP, NULL);
+    printf("\x1b[0;0H[Current guesses: %d]",numGuesses);
     printf("\x1b[0;1H[Welcome to mastermind]");
     printf("\x1b[0;2H[Press Start to exit]");
+    printf("\x1b[0;3H[X: correct guess ]");
+    printf("\x1b[0;4H[O: correct guess wrong spot ]");
+    printf("\x1b[0;5H[_: incorrect guess ]");
+
+    //TODO: insert guess tracker
+
+    
+
+
+  
+    //switch to bottom screen to print guide
+
+    consoleInit(GFX_BOTTOM, NULL);
+    printf("\x1b[0;0H[Enter your 4-button sequence out of: X, B, A, Y, L, R]");
+    
     //getting a guess and insuring it is a proper guess
     char playerGuess[5];
-    //clear the screen and bring back guess tracker, 
-    consoleClear();
-    printf("\x1b[0;0H[Current guesses: %d]",rounds);
-    printf("\x1b[0;1H[Enter your 4-button sequence out of: X, B, A, Y, L, R]");
-
     getPlayerGuess(playerGuess);
     while(isValidGuess(playerGuess)!=0){
         consoleClear();
@@ -91,39 +104,50 @@ int main()
         int c;
         while ((c=getchar())!='\n'&& c!=EOF);
     }
-    //clear the screen and bring back guess tracker
-    //print key for response form
+    //made a proper guess, numGuesses is updated and top screen is updated
+    numGuesses++;
+    consoleInit(GFX_TOP, NULL);
     consoleClear();
-    printf("\x1b[0;0H[Current guesses: %d]",rounds);
-    printf("\x1b[0;1H[X: correct guess ]");
-    printf("\x1b[0;2H[O: correct guess wrong spot ]");
-    printf("\x1b[0;3H[_: incorrect guess ]");
+    printf("\x1b[0;0H[Current guesses: %d]",numGuesses);
+    printf("\x1b[0;1H[Welcome to mastermind]");
+    printf("\x1b[0;2H[Press Start to exit]");
+    printf("\x1b[0;3H[X: correct guess ]");
+    printf("\x1b[0;4H[O: correct guess wrong spot ]");
+    printf("\x1b[0;5H[_: incorrect guess ]");
+
+
+    //clear the bottom screen
+    consoleInit(GFX_BOTTOM, NULL);
+    consoleClear();
 
     //constructing a print statement to return to player
     char printStatement[]={'_','_','_','_'};
 
+    //numCorrect determines a win if ==4 
     int numCorrect=0;
     for(int i=0; i<4;i++){
         if(sequence[i]==playerGuess[i]){
+            //perfect placement
             printStatement[i]='X';
             numCorrect++;
         }
         else if(isInArray(sequence,i+1,playerGuess[i])==1){
+            //wrong placement
             printStatement[i]='O';
         }else{
+            //you're a disappointment >:( [incorrect]
             printStatement[i]='_';
         }
     }
+    printf("\x1b[0;0H[Analysis of your guess: %s gave %s]",playerGuess,printStatement);
     consoleClear();
-    printf("\x1b[0;0H[Current guesses: %d]",rounds);
-    printf("\x1b[0;0H[Analysis of your guess: %s]",printStatement);
     if(numCorrect==4){
+        consoleInit(GFX_TOP, NULL);
         consoleClear();
-        printf("\x1b[0;0H[Congratulations, You WON!!!!!!]");
+        printf("\x1b[0;0H[Congratulations, You Won in %d guesses]",numGuesses);
         break;
     }
     rounds++;
-    /** End of your code **/
 
     
     // Flush and swap framebuffers
