@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void main(){
+int main(){
     int rounds=0;
     printf("Welcome to mastermind\n");
     // creating the list of options to grab from later
@@ -23,7 +23,7 @@ void main(){
         printf("Enter your 4-button sequence out of: X, B, A, Y, L, R");
         scanf("%s", playerGuess);
         while(isValidGuess(playerGuess)!=0){
-        printf("Please enter a proper guess");
+        printf("Please enter a proper guess\n");
             scanf("%s", playerGuess);
             int c;
             while ((c=getchar())!='\n'&& c!=EOF);
@@ -32,9 +32,9 @@ void main(){
     }
 
 }
-int isValidGuess(const str *guess){
-    for (int i=0; i<len; i++){
-        if(strchr(guess+i+1, guess[i]) != NULL)
+int isValidGuess(const char* guess){
+    for (int i=0; i<5; i++){
+        if(strchr(guess+i, guess[i]) != NULL)
             return 0; 
         if(guess[i]!='X'&&guess[i]!='R'&&guess[i]!='A'&&guess[i]!='B'&&guess[i]!='L'&&guess[i]!='Y')
             return 0;
