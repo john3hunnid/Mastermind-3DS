@@ -3,6 +3,12 @@
 #include <3ds.h>
 #include <stdlib.h>
 
+//function prototypes:
+int isValidGuess(char* guess);
+int isInArray(char array[], int size, char value);
+char getInput();
+void getPlayerGuess(char *guess);
+
 int main()
 {
   // Initializations
@@ -24,10 +30,7 @@ int main()
   consoleInit(GFX_TOP, NULL);
   //start of game(out of loop)
 
-  int rounds=0;
-    //printf("Welcome to mastermind\n");
-    
-    
+    int rounds=0;
     // creating the list of options to grab from later
     char options[] = {'X', 'B', 'A', 'Y', 'L', 'R'};
     //initializing the generated random list for opponent
@@ -70,25 +73,35 @@ int main()
 
 
     //printing to first line
-    printf("\x1b[0;0H[Welcome to mastermind]");
-    printf("\x1b[0;1H[Press Start to exit]");
-    printf("\x1b[0;2H[Current guesses: %d]",rounds);
+    printf("\x1b[0;0H[Current guesses: %d]",rounds);
+    printf("\x1b[0;1H[Welcome to mastermind]");
+    printf("\x1b[0;2H[Press Start to exit]");
     //getting a guess and insuring it is a proper guess
     char playerGuess[5];
-    printf("Enter your 4-button sequence out of: X, B, A, Y, L, R");
-    playerGuess=getPlayerGuess();
-    scanf("%s", playerGuess);
+    //clear the screen and bring back guess tracker, 
+    consoleClear();
+    printf("\x1b[0;0H[Current guesses: %d]",rounds);
+    printf("\x1b[0;1H[Enter your 4-button sequence out of: X, B, A, Y, L, R]");
+
+    getPlayerGuess(playerGuess);
     while(isValidGuess(playerGuess)!=0){
-        printf("Please enter a proper guess\n");
-        playerGuess=getPlayerGuess();
+        consoleClear();
+        printf("\x1b[0;0H[Please enter a proper guess\n]");
+        getPlayerGuess(playerGuess);
         int c;
         while ((c=getchar())!='\n'&& c!=EOF);
-        }
-        //constructing a print statement to return to player
+    }
+    //clear the screen and bring back guess tracker
+    //print key for response form
+    consoleClear();
+    printf("\x1b[0;0H[Current guesses: %d]",rounds);
+    printf("\x1b[0;1H[X: correct guess ]");
+    printf("\x1b[0;2H[O: correct guess wrong spot ]");
+    printf("\x1b[0;3H[_: incorrect guess ]");
+
+    //constructing a print statement to return to player
     char printStatement[]={'_','_','_','_'};
-    printf("X: correct guess \n");
-    printf("O: correct guess wrong spot \n");
-    printf("_: incorrect guess \n");
+
     int numCorrect=0;
     for(int i=0; i<4;i++){
         if(sequence[i]==playerGuess[i]){
@@ -123,7 +136,7 @@ int main()
   // Return to hbmenu
   return 0;
 }
-int isValidGuess(const char* guess){
+int isValidGuess(char* guess){
     for (int i=0; i<4; i++){
         if(strchr(guess+i, guess[i]) != NULL)
             return 0; 
@@ -144,6 +157,8 @@ int isInArray(char array[], int size, char value) {
     return 0;
 }
 char getInput(){
+    hidScanInput();
+    kDown = hidKeysDown();
     if(kDown & KEY_R){
         return 'R';
     }
@@ -162,12 +177,12 @@ char getInput(){
     if(kDown & KEY_Y){
         return 'Y';
     }
-    
+    return '\0';
 }
-char getPlayerGuess{
-    char guess[5];
+void getPlayerGuess(char *guess){
     for(int i=0; i<4;i++){
         guess[i]=getInput();
     }
+    guess[4]='\0';
     return guess;
 }
