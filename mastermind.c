@@ -6,7 +6,7 @@ void main(){
     printf("Welcome to mastermind\n");
     // creating the list of options to grab from later
     char options[] = {'A', 'B', 'X', 'Y', 'L', 'R'};
-    //initializing
+    //initializing the generated random list for opponent
     char sequence[4];
     for(int i=0; i<4; i++){
         int randomIndex=rand()%4;
@@ -15,6 +15,7 @@ void main(){
         }
         sequence[i]=options[randomIndex];
     }
+    //running the game
     while(rounds<10){
         printf("Enter your 4-button sequence out of: X, B, A, Y, L, R");
         char playerGuess[];
