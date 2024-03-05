@@ -20,9 +20,9 @@ int main()
 
   //initializing the screen
   gfxInitDefault();
-
-  //start of game(out of loop)
   consoleInit(GFX_TOP, NULL);
+  //start of game(out of loop)
+
   int rounds=0;
     //printf("Welcome to mastermind\n");
     
@@ -40,7 +40,7 @@ int main()
         sequence[i]=options[randomIndex];
     }
   // Main loop
-  while (aptMainLoop())
+  while (aptMainLoop()&&rounds<11)
   {
 
     // Wait for next frame
@@ -67,9 +67,39 @@ int main()
 
 
     /** Your code starts here **/
-    
-    
-    
+
+    //getting a guess and insuring it is a proper guess
+    char playerGuess[5];
+    printf("Enter your 4-button sequence out of: X, B, A, Y, L, R");
+    scanf("%s", playerGuess);
+    while(isValidGuess(playerGuess)!=0){
+        printf("Please enter a proper guess\n");
+        scanf("%s", playerGuess);
+        int c;
+        while ((c=getchar())!='\n'&& c!=EOF);
+        }
+        //constructing a print statement to return to player
+    char printStatement[]={'_','_','_','_'};
+    printf("X: correct guess \n");
+    printf("O: correct guess wrong spot \n");
+    printf("_: incorrect guess \n");
+    int numCorrect=0;
+    for(int i=0; i<4;i++){
+        if(sequence[i]==playerGuess[i]){
+            printStatement[i]='X';
+            numCorrect++;
+        }
+        else if(isInArray(sequence,i+1,playerGuess[i])==1){
+            printStatement[i]='O';
+        }else{
+            printStatement[i]='_';
+        }
+    }
+    printf("Analysis of your guess: %s \n",printStatement);
+    if(numCorrect==4){
+        printf("Congratulations, You WON!!!!!!");
+    }
+    rounds++;
     /** End of your code **/
 
     
