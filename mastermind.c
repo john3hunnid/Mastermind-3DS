@@ -33,9 +33,11 @@ int game(){
         printf("X: correct guess \n");
         printf("O: correct guess wrong spot \n");
         printf("_: incorrect guess \n")
+        int numCorrect=0;
         for(int i=0; i<4;i++){
             if(sequence[i]==playerGuess[i]){
                 printStatement[i]='X';
+                numCorrect++;
             }
             else if(isInArray(sequence,i+1,playerGuess[i])==1){
                 printStatement[i]='O';
@@ -45,6 +47,9 @@ int game(){
         }
         printf("Analysis of your guess: %s \n",printStatement);
         rounds++;
+        if(numCorrect==4){
+            printf("Congratulations, You WON!!!!!!");
+        }
     }
     return 0;
 

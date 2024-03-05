@@ -18,6 +18,9 @@ int main()
   u8* fbBottom;     // bottom screen's framebuffer
     
   // Main loop
+  //
+  gfxInitDefault();
+
   while (aptMainLoop())
   {
 
@@ -64,4 +67,24 @@ int main()
 
   // Return to hbmenu
   return 0;
+}
+int isValidGuess(const char* guess){
+    for (int i=0; i<4; i++){
+        if(strchr(guess+i, guess[i]) != NULL)
+            return 0; 
+        if(guess[i]!='X'&&guess[i]!='R'&&guess[i]!='A'&&guess[i]!='B'&&guess[i]!='L'&&guess[i]!='Y')
+            return 0;
+    }
+    return 1;
+}
+int isInArray(char array[], int size, char value) {
+    if(size==1){
+        return 0;
+    }
+    for(int i=0; i<size; i++) {
+        if(array[i]==value) {
+            return 1;
+        }
+    }
+    return 0;
 }
