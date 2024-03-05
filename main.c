@@ -40,7 +40,7 @@ int main()
         sequence[i]=options[randomIndex];
     }
   // Main loop
-  while (aptMainLoop()&&rounds<11)
+  while (aptMainLoop() & rounds<11)
   {
 
     // Wait for next frame
@@ -141,4 +141,25 @@ int isInArray(char array[], int size, char value) {
         }
     }
     return 0;
+}
+char getInput(){
+    if(kDown & KEY_R){
+        return 'R';
+    }
+    if(kDown & KEY_L){
+        return 'L';
+    }
+    if(kDown & KEY_A){
+        return 'A';
+    }
+    if(kDown & KEY_B){
+        return 'B';
+    }
+    if(kDown & KEY_X){
+        return 'X';
+    }
+    if(kDown & KEY_Y){
+        return 'Y';
+    }
+    
 }
