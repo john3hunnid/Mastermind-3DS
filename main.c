@@ -76,10 +76,11 @@ int main()
     //getting a guess and insuring it is a proper guess
     char playerGuess[5];
     printf("Enter your 4-button sequence out of: X, B, A, Y, L, R");
+    playerGuess=getPlayerGuess();
     scanf("%s", playerGuess);
     while(isValidGuess(playerGuess)!=0){
         printf("Please enter a proper guess\n");
-        scanf("%s", playerGuess);
+        playerGuess=getPlayerGuess();
         int c;
         while ((c=getchar())!='\n'&& c!=EOF);
         }
@@ -162,4 +163,11 @@ char getInput(){
         return 'Y';
     }
     
+}
+char getPlayerGuess{
+    char guess[5];
+    for(int i=0; i<4;i++){
+        guess[i]=getInput();
+    }
+    return guess;
 }
