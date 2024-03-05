@@ -30,6 +30,16 @@ int main(){
         }
         //constructing a print statement to return to player
         char printStatement[4];
+        printf("X: correct guess \n");
+        printf("O: correct guess wrong spot \n");
+        for(int i=0; i<4;i++){
+            if(sequence[i]==playerGuess[i]){
+                printStatement[i]=="X";
+            }
+            else if(isInArray(sequence,i+1,playerGuess[i])==1){
+                printStatement[i]=="O";
+            }
+        }
         rounds++;
     }
 
