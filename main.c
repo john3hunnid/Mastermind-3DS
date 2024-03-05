@@ -76,6 +76,7 @@ int main()
 
     //printing to first 6 lines on the top screen (these remain constant)
     consoleInit(GFX_TOP, NULL);
+    consoleClear();
     printf("\x1b[0;0H[Current guesses: %d]",numGuesses);
     printf("\x1b[0;1H[Welcome to mastermind]");
     printf("\x1b[0;2H[Press Start to exit]");
