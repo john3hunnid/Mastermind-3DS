@@ -17,10 +17,29 @@ int main()
   u8* fbTopRight;   // top right screen's framebuffer
   u8* fbBottom;     // bottom screen's framebuffer
     
-  // Main loop
-  //
+
+  //initializing the screen
   gfxInitDefault();
 
+  //start of game(out of loop)
+  consoleInit(GFX_TOP, NULL);
+  int rounds=0;
+    //printf("Welcome to mastermind\n");
+    
+    //printing to first line
+    printf("\x1b[0;0H[Welcome to mastermind]");
+    // creating the list of options to grab from later
+    char options[] = {'X', 'B', 'A', 'Y', 'L', 'R'};
+    //initializing the generated random list for opponent
+    char sequence[4];
+    for(int i=0; i<4; i++){
+        int randomIndex=rand()%6;
+        while(isInArray(sequence,i+1,options[randomIndex])==1){
+            randomIndex=rand()%6;
+        }
+        sequence[i]=options[randomIndex];
+    }
+  // Main loop
   while (aptMainLoop())
   {
 

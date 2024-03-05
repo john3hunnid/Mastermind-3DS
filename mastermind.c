@@ -32,7 +32,7 @@ int game(){
         char printStatement[]={'_','_','_','_'};
         printf("X: correct guess \n");
         printf("O: correct guess wrong spot \n");
-        printf("_: incorrect guess \n")
+        printf("_: incorrect guess \n");
         int numCorrect=0;
         for(int i=0; i<4;i++){
             if(sequence[i]==playerGuess[i]){
@@ -42,7 +42,7 @@ int game(){
             else if(isInArray(sequence,i+1,playerGuess[i])==1){
                 printStatement[i]='O';
             }else{
-                printStatement[i]='_'
+                printStatement[i]='_';
             }
         }
         printf("Analysis of your guess: %s \n",printStatement);
