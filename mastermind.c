@@ -12,7 +12,7 @@ int main(){
     for(int i=0; i<4; i++){
         int randomIndex=rand()%6;
         while(isInArray(sequence,i+1,options[randomIndex])==1){
-            int randomIndex=rand()%6;
+            randomIndex=rand()%6;
         }
         sequence[i]=options[randomIndex];
     }
@@ -32,12 +32,15 @@ int main(){
         char printStatement[4];
         printf("X: correct guess \n");
         printf("O: correct guess wrong spot \n");
+        printf("_: incorrect guess \n")
         for(int i=0; i<4;i++){
             if(sequence[i]==playerGuess[i]){
-                printStatement[i]=="X";
+                printStatement[i]='X';
             }
             else if(isInArray(sequence,i+1,playerGuess[i])==1){
-                printStatement[i]=="O";
+                printStatement[i]='O';
+            }else{
+                printStatement[i]='_'
             }
         }
         printf("Analysis of your guess: %s \n",printStatement);
@@ -47,7 +50,7 @@ int main(){
 
 }
 int isValidGuess(const char* guess){
-    for (int i=0; i<5; i++){
+    for (int i=0; i<4; i++){
         if(strchr(guess+i, guess[i]) != NULL)
             return 0; 
         if(guess[i]!='X'&&guess[i]!='R'&&guess[i]!='A'&&guess[i]!='B'&&guess[i]!='L'&&guess[i]!='Y')
