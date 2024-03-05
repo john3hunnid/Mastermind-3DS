@@ -118,7 +118,7 @@ int main()
     printf("\x1b[0;0H[Current guesses: %d]",rounds);
     printf("\x1b[0;0H[Analysis of your guess: %s]",printStatement);
     if(numCorrect==4){
-        consoleCLear();
+        consoleClear();
         printf("\x1b[0;0H[Congratulations, You WON!!!!!!]");
         break;
     }
@@ -188,5 +188,6 @@ void getPlayerGuess(char *guess){
         guess[i]=getInput();
     }
     guess[4]='\0';
-    return guess;
+    int c;
+    while ((c=getchar())!='\n'&& c!=EOF);
 }
