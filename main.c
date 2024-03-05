@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <3ds.h>
+#include <stdlib.h>
 
 int main()
 {
@@ -26,8 +27,7 @@ int main()
   int rounds=0;
     //printf("Welcome to mastermind\n");
     
-    //printing to first line
-    printf("\x1b[0;0H[Welcome to mastermind]");
+    
     // creating the list of options to grab from later
     char options[] = {'X', 'B', 'A', 'Y', 'L', 'R'};
     //initializing the generated random list for opponent
@@ -68,6 +68,11 @@ int main()
 
     /** Your code starts here **/
 
+
+    //printing to first line
+    printf("\x1b[0;0H[Welcome to mastermind]");
+    printf("\x1b[0;1H[Press Start to exit]");
+    printf("\x1b[0;2H[Current guesses: %d]",rounds);
     //getting a guess and insuring it is a proper guess
     char playerGuess[5];
     printf("Enter your 4-button sequence out of: X, B, A, Y, L, R");
