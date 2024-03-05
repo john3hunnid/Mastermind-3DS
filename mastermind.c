@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(){
+int game(){
     int rounds=0;
     printf("Welcome to mastermind\n");
     // creating the list of options to grab from later
