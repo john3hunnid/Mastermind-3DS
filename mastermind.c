@@ -18,7 +18,7 @@ void main(){
     //running the game
     while(rounds<10){
         printf("Enter your 4-button sequence out of: X, B, A, Y, L, R");
-        char playerGuess[];
+        char playerGuess[4];
         scanf("%4[XYRABL], playerGuess")
         
         rounds++;
