@@ -17,13 +17,20 @@ void main(){
     }
     //running the game
     while(rounds<10){
-        printf("Enter your 4-button sequence out of: X, B, A, Y, L, R");
         char playerGuess[4];
-        scanf("%4[XYRABL], playerGuess")
-        
+        char printStatement[4];
+        printf("Enter your 4-button sequence out of: X, B, A, Y, L, R");
+        scanf("%s", playerGuess);
+        while(isValidGuess(playerGuess)==1){
+        printf("Please enter a proper guess");
+           scanf("%s", playerGuess);
+        }
         rounds++;
     }
 
+}
+int isValidGuess(const str *guess){
+    
 }
 int isInArray(char array[], int size, char value) {
     if(size==1){
