@@ -114,9 +114,13 @@ int main()
             printStatement[i]='_';
         }
     }
-    printf("Analysis of your guess: %s \n",printStatement);
+    consoleClear();
+    printf("\x1b[0;0H[Current guesses: %d]",rounds);
+    printf("\x1b[0;0H[Analysis of your guess: %s]",printStatement);
     if(numCorrect==4){
-        printf("Congratulations, You WON!!!!!!");
+        consoleCLear();
+        printf("\x1b[0;0H[Congratulations, You WON!!!!!!]");
+        break;
     }
     rounds++;
     /** End of your code **/
