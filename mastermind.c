@@ -1,5 +1,6 @@
 #include <stdio.h>    
 #include <stdlib.h>
+#include <string.h>
 
 void main(){
     int rounds=0;
@@ -9,9 +10,9 @@ void main(){
     //initializing the generated random list for opponent
     char sequence[4];
     for(int i=0; i<4; i++){
-        int randomIndex=rand()%4;
-        while(isInArray(sequene,i+1,options[randomIndex])==1){
-            int randomIndex=rand()%4;
+        int randomIndex=rand()%6;
+        while(isInArray(sequence,i+1,options[randomIndex])==1){
+            int randomIndex=rand()%6;
         }
         sequence[i]=options[randomIndex];
     }
@@ -21,7 +22,7 @@ void main(){
         char printStatement[4];
         printf("Enter your 4-button sequence out of: X, B, A, Y, L, R");
         scanf("%s", playerGuess);
-        while(isValidGuess(playerGuess)==1){
+        while(isValidGuess(playerGuess)!=0){
         printf("Please enter a proper guess");
             scanf("%s", playerGuess);
             int c;
