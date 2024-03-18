@@ -2,6 +2,7 @@
 #include <string.h>
 #include <3ds.h>
 #include <stdlib.h>
+#include <functions3DS.h>
 
 //function prototypes:
 

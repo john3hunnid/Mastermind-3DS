@@ -1,6 +1,7 @@
 #include <stdio.h>    
 #include <stdlib.h>
 #include <string.h>
+#include <functions.h>
 
 int game(){
     int rounds=0;
@@ -63,7 +64,7 @@ int isValidGuess(const char* guess){
     }
     return 1;
 }
-int isInArray(char array[], int size, char value) {
+int isInArray(char array[], int size, char value){
     if(size==1){
         return 0;
     }
